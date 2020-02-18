@@ -17,6 +17,10 @@ Designed for Google CloudFunctions environment.
 * jasmine (https://github.com/jasmine/jasmine) - Testing
 * nyc (https://github.com/istanbuljs/nyc) - Coverage with tests almost 100%
 
+## Installation
+
+@TODO
+
 ## Usage
 
 @TODO
