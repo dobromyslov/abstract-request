@@ -1,0 +1,65 @@
+{
+  "name": "@dobromyslov/abstract-request",
+  "version": "0.9.0",
+  "description": "Abstract request library for APIs implementation",
+  "license": "MIT",
+  "repository": "dobromyslov/abstract-request",
+  "author": "Viacheslav Dobromyslov <viacheslav@dobromyslov.ru>",
+  "keywords": [],
+  "main": "dist/src",
+  "types": "dist/src",
+  "sideEffects": false,
+  "scripts": {
+    "test": "xo && tsc --noEmit && nyc jasmine-ts",
+    "release": "np",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@types/jasmine": "^3.5.4",
+    "@types/node": "^10.17.15",
+    "@types/node-fetch": "^2.5.4",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "eslint-config-xo-typescript": "^0.26.0",
+    "jasmine": "^3.5.0",
+    "jasmine-ts": "^0.3.0",
+    "nyc": "^15.0.0",
+    "source-map-support": "^0.5.16",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5",
+    "xo": "^0.26.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "xo": {
+    "extends": [
+      "xo-typescript"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "ignores": ["spec/"],
+    "space": 4,
+    "rules": {
+      "@typescript-eslint/indent": "off"
+    }
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "include": [
+      "src/**"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "lcovonly",
+      "text",
+      "text-summary"
+    ]
+  }
+}
