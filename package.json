@@ -1,11 +1,17 @@
 {
   "name": "@dobromyslov/abstract-request",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "Lightweight abstract request library for API clients implementation",
   "license": "MIT",
   "repository": "dobromyslov/abstract-request",
   "author": "Viacheslav Dobromyslov <viacheslav@dobromyslov.ru>",
-  "keywords": [],
+  "keywords": [
+    "fetch",
+    "node-fetch",
+    "request",
+    "api client",
+    "http"
+  ],
   "files": [
     "dist"
   ],

@@ -23,8 +23,8 @@ const plainParams = {
 };
 
 class A extends AbstractRequest<String>{
-    protected baseUrl: string = 'http://google.com';
-    protected httpMethod = 'GET' as const;
+    baseUrl  = 'http://google.com';
+    httpMethod = 'GET' as const;
 
     getUrlWithParams(): URL {
         this.queryParams = nestedParams;
@@ -39,8 +39,8 @@ class A extends AbstractRequest<String>{
 }
 
 class B extends AbstractRequest<String>{
-    protected baseUrl: string = 'http://google.com';
-    protected httpMethod = 'POST' as const;
+    baseUrl = 'http://google.com';
+    httpMethod = 'POST' as const;
 
     getUrlWithParams(): URL {
         this.queryParams = nestedParams;

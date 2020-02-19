@@ -13,14 +13,14 @@ export abstract class AbstractRequest<T> {
     public json?: {[key: string]: any};
 
     /**
+     * Base URL to send request to.
+     */
+    protected baseUrl = '';
+
+    /**
      * Query params to be used in URL.searchParams.
      */
     protected queryParams: {[key: string]: any} = {};
-
-    /**
-     * Base URL to send request to.
-     */
-    protected abstract baseUrl: string;
 
     /**
      * HTTP protocol method.
