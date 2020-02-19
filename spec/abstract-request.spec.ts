@@ -1,6 +1,4 @@
-import {AbstractRequest} from '../src';
-import {Response} from 'node-fetch';
-import {URL} from 'url';
+import {AbstractRequest, Response, URL} from '../src';
 
 const nestedParams = {
     a: {

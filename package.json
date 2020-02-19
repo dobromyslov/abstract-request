@@ -1,27 +1,34 @@
 {
   "name": "@dobromyslov/abstract-request",
-  "version": "0.9.0",
-  "description": "Abstract request library for APIs implementation",
+  "version": "0.9.8",
+  "description": "Lightweight abstract request library for API clients implementation",
   "license": "MIT",
   "repository": "dobromyslov/abstract-request",
   "author": "Viacheslav Dobromyslov <viacheslav@dobromyslov.ru>",
   "keywords": [],
-  "main": "dist/src",
-  "types": "dist/src",
+  "files": [
+    "dist"
+  ],
+  "main": "dist",
+  "types": "dist",
   "sideEffects": false,
   "scripts": {
     "test": "xo && tsc --noEmit && nyc jasmine-ts",
     "release": "np",
-    "build": "tsc",
+    "build": "del-cli dist && tsc",
     "prepare": "npm run build"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "@types/node-fetch": "^2.5.4"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/jasmine": "^3.5.4",
     "@types/node": "^10.17.15",
-    "@types/node-fetch": "^2.5.4",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
+    "del-cli": "^3.0.0",
     "eslint-config-xo-typescript": "^0.26.0",
     "jasmine": "^3.5.0",
     "jasmine-ts": "^0.3.0",
@@ -31,9 +38,6 @@
     "typescript": "^3.7.5",
     "xo": "^0.26.1"
   },
-  "dependencies": {
-    "node-fetch": "^2.6.0"
-  },
   "xo": {
     "extends": [
       "xo-typescript"
@@ -41,7 +45,9 @@
     "extensions": [
       "ts"
     ],
-    "ignores": ["spec/"],
+    "ignores": [
+      "spec/"
+    ],
     "space": 4,
     "rules": {
       "@typescript-eslint/indent": "off"
