@@ -59,7 +59,7 @@ export class MyRequest extends AbstractRequest<MyResponse> {
     }
 
     protected processResponse(response: Response): Promise<MyResponse> {
-        return response.text().then(text => {
+        return response.text().then((text: string) => {
             return Object.assign(new MyResponse(), JSON.parse(text));
         });
         // Or you may use embedded json conversion
