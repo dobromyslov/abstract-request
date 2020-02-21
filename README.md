@@ -8,13 +8,14 @@ Designed for Google CloudFunctions environment.
 
 ## Features
 
+* [node-fetch](https://github.com/node-fetch/node-fetch) - Low level HTTP transport
 * NodeJS
 * TypeScript
 * Promises
-* node-fetch (https://github.com/node-fetch/node-fetch) - Low level HTTP transport
-* xojs/xo (https://github.com/xojs/xo) with plugins for TypeScript - Linting
-* jasmine (https://github.com/jasmine/jasmine) - Testing
-* nyc (https://github.com/istanbuljs/nyc) - Tests Coverage
+* [xojs/xo](https://github.com/xojs/xo) with plugins for TypeScript - linting in CLI
+* [ESLint](https://github.com/eslint/eslint) - linting in the WebStorm with [ESLint plugin](https://plugins.jetbrains.com/plugin/7494-eslint)
+* [jasmine](https://github.com/jasmine/jasmine) - Testing
+* [nyc](https://github.com/istanbuljs/nyc) - Code Coverage
 
 ## Installation
 
