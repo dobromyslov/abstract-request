@@ -1,5 +1,6 @@
 import fetch, {Response} from 'node-fetch';
 import {URL, URLSearchParams} from 'url';
+import AbortController from 'abort-controller/dist/abort-controller';
 
 export abstract class AbstractRequest<T> {
     /**
@@ -26,6 +27,8 @@ export abstract class AbstractRequest<T> {
      * HTTP protocol method.
      */
     protected abstract httpMethod: 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+    private abortController = new AbortController();
 
     /**
      * Converts nested object to plain query params for further feeding to URL.searchParams.append.
@@ -79,7 +82,8 @@ export abstract class AbstractRequest<T> {
         return fetch(url, {
             method: this.httpMethod,
             body,
-            headers: this.json ? {'Content-Type': 'application/json'} : undefined
+            headers: this.json ? {'Content-Type': 'application/json'} : undefined,
+            signal: this.abortController.signal
         }).then(async response => this.processResponse(response));
     }
 
@@ -100,5 +104,13 @@ export abstract class AbstractRequest<T> {
         return url;
     }
 
-    protected abstract async processResponse(response: Response): Promise<T>;
+  /**
+   * Aborts request.
+   * Request ends with error when aborted.
+   */
+  public abort(): void {
+    this.abortController.abort();
+  }
+
+  protected abstract async processResponse(response: Response): Promise<T>;
 }
