@@ -20,31 +20,37 @@
   "sideEffects": false,
   "scripts": {
     "test": "xo && tsc --noEmit && nyc jasmine-ts",
-    "release": "np",
     "build": "del-cli dist && tsc",
-    "prepare": "npm run build"
+    "release": "np"
   },
   "dependencies": {
-    "@types/node-fetch": "^2.5.4",
+    "@types/node-fetch": "^2.5.5",
     "abort-controller": "^3.0.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
-    "@types/jasmine": "^3.5.4",
-    "@types/node": "^10.17.15",
-    "@typescript-eslint/eslint-plugin": "^2.20.0",
-    "@typescript-eslint/parser": "^2.20.0",
+    "@types/jasmine": "^3.5.10",
+    "@types/node": "^10.17.17",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
     "del-cli": "^3.0.0",
     "eslint-config-xo-typescript": "^0.26.0",
     "jasmine": "^3.5.0",
     "jasmine-ts": "^0.3.0",
-    "np": "^6.1.0",
+    "np": "^6.2.0",
     "nyc": "^15.0.0",
     "source-map-support": "^0.5.16",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3",
     "xo": "^0.26.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo/esnext",
+      "xo-typescript",
+      "xo-typescript/space"
+    ]
   },
   "xo": {
     "extends": [
@@ -56,9 +62,17 @@
     "ignores": [
       "spec/"
     ],
-    "space": 4,
+    "space": true,
     "rules": {
-      "@typescript-eslint/indent": "off"
+      "@typescript-eslint/indent": "off",
+      "import/no-unassigned-import": [
+        "error",
+        {
+          "allow": [
+            "reflect-metadata"
+          ]
+        }
+      ]
     }
   },
   "nyc": {
