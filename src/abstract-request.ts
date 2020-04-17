@@ -91,14 +91,15 @@ export abstract class AbstractRequest<T> {
     if (this.json) {
       headers['Content-Type'] = 'application/json';
     }
+
     if (this.cookie) {
-      headers['Cookie'] = this.cookie;
+      headers.Cookie = this.cookie;
     }
 
     return fetch(url, {
       method: this.httpMethod,
       body,
-      headers: headers,
+      headers,
       signal: this.abortController.signal
     }).then(async response => this.processResponse(response));
   }
