@@ -19,6 +19,11 @@ export abstract class AbstractRequest<T> {
   protected baseUrl = '';
 
   /**
+   * Cookie string.
+   */
+  protected cookie?: string;
+
+  /**
    * Query params to be used in URL.searchParams.
    */
   protected queryParams: {[key: string]: any} = {};
@@ -82,10 +87,18 @@ export abstract class AbstractRequest<T> {
       body = JSON.stringify(this.json);
     }
 
+    const headers: {[key: string]: string} = {};
+    if (this.json) {
+      headers['Content-Type'] = 'application/json';
+    }
+    if (this.cookie) {
+      headers['Cookie'] = this.cookie;
+    }
+
     return fetch(url, {
       method: this.httpMethod,
       body,
-      headers: this.json ? {'Content-Type': 'application/json'} : undefined,
+      headers: headers,
       signal: this.abortController.signal
     }).then(async response => this.processResponse(response));
   }
