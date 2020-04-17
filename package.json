@@ -21,7 +21,7 @@
   "scripts": {
     "test": "xo && tsc --noEmit && nyc jasmine-ts",
     "build": "del-cli dist && tsc",
-    "release": "np"
+    "release": "npm run build && np"
   },
   "dependencies": {
     "@types/node-fetch": "^2.5.5",
