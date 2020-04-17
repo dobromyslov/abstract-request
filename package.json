@@ -24,11 +24,11 @@
     "release": "npm run build && np"
   },
   "dependencies": {
-    "@types/node-fetch": "^2.5.5",
     "abort-controller": "^3.0.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.5",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/jasmine": "^3.5.10",
     "@types/node": "^10.17.17",
