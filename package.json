@@ -1,6 +1,6 @@
 {
   "name": "@dobromyslov/abstract-request",
-  "version": "0.9.15",
+  "version": "0.9.16",
   "description": "Lightweight abstract request library for API clients implementation",
   "license": "MIT",
   "repository": "dobromyslov/abstract-request",
