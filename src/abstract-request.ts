@@ -19,9 +19,14 @@ export abstract class AbstractRequest<T> {
   protected baseUrl = '';
 
   /**
-   * Cookie string.
+   * Cookie header string.
    */
   protected cookie?: string;
+
+  /**
+   * User agent header string.
+   */
+  protected userAgent?: string;
 
   /**
    * Query params to be used in URL.searchParams.
@@ -94,6 +99,10 @@ export abstract class AbstractRequest<T> {
 
     if (this.cookie) {
       headers.Cookie = this.cookie;
+    }
+
+    if (this.userAgent) {
+      headers['User-Agent'] = this.userAgent;
     }
 
     return fetch(url, {
