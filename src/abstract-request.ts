@@ -29,6 +29,11 @@ export abstract class AbstractRequest<T> {
   protected userAgent?: string;
 
   /**
+   * HTTP request headers.
+   */
+  protected headers?: {[key: string]: string};
+
+  /**
    * Query params to be used in URL.searchParams.
    */
   protected queryParams: {[key: string]: any} = {};
@@ -92,7 +97,7 @@ export abstract class AbstractRequest<T> {
       body = JSON.stringify(this.json);
     }
 
-    const headers: {[key: string]: string} = {};
+    const headers: {[key: string]: string} = this.headers ?? {};
     if (this.json) {
       headers['Content-Type'] = 'application/json';
     }
@@ -128,6 +133,15 @@ export abstract class AbstractRequest<T> {
     }
 
     return url;
+  }
+
+  /**
+   * Sets HTTP headers.
+   * @param headers
+   */
+  public setHeaders(headers: {[key: string]: string}): AbstractRequest<T> {
+    this.headers = headers;
+    return this;
   }
 
   /**
