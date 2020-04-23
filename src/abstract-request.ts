@@ -156,8 +156,9 @@ export abstract class AbstractRequest<T> {
    * Sets Proxy Server URL.
    * e.g. http://127.0.0.1:8080
    */
-  public setProxyUrl(proxyUrl: string): void {
+  public setProxyUrl(proxyUrl: string): AbstractRequest<T> {
     this.proxyUrl = proxyUrl;
+    return this;
   }
 
   /**
