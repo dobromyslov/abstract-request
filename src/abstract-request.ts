@@ -122,7 +122,7 @@ export abstract class AbstractRequest<T> {
       body,
       headers,
       signal: this.abortController.signal,
-      agent: this.proxyUrl ? new HttpsProxyAgent(this.proxyUrl): undefined
+      agent: this.proxyUrl ? new HttpsProxyAgent(this.proxyUrl) : undefined
     }).then(async response => this.processResponse(response));
   }
 
