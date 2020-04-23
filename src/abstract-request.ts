@@ -1,6 +1,7 @@
 import fetch, {Response} from 'node-fetch';
 import {URL, URLSearchParams} from 'url';
 import AbortController from 'abort-controller/dist/abort-controller';
+import HttpsProxyAgent from 'https-proxy-agent/dist/agent';
 
 export abstract class AbstractRequest<T> {
   /**
@@ -32,6 +33,12 @@ export abstract class AbstractRequest<T> {
    * HTTP request headers.
    */
   protected headers?: {[key: string]: string};
+
+  /**
+   * Proxy URL.
+   * e.g. http://127.0.0.1:8080
+   */
+  protected proxyUrl?: string;
 
   /**
    * Query params to be used in URL.searchParams.
@@ -114,7 +121,8 @@ export abstract class AbstractRequest<T> {
       method: this.httpMethod,
       body,
       headers,
-      signal: this.abortController.signal
+      signal: this.abortController.signal,
+      agent: this.proxyUrl ? new HttpsProxyAgent(this.proxyUrl): undefined
     }).then(async response => this.processResponse(response));
   }
 
@@ -142,6 +150,14 @@ export abstract class AbstractRequest<T> {
   public setHeaders(headers: {[key: string]: string}): AbstractRequest<T> {
     this.headers = headers;
     return this;
+  }
+
+  /**
+   * Sets Proxy Server URL.
+   * e.g. http://127.0.0.1:8080
+   */
+  public setProxyUrl(proxyUrl: string): void {
+    this.proxyUrl = proxyUrl;
   }
 
   /**
