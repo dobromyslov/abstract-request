@@ -56,24 +56,24 @@ export abstract class AbstractRequest<T> {
   protected abstract httpMethod: 'GET' | 'POST' | 'PUT' | 'DELETE';
 
   /**
-   * Converts nested object to plain query params for further feeding to URL.searchParams.append.
+   * Converts nested object to plain query parameters for further feeding to URL.searchParams.append.
    *
-   * @param nestedParams nested objects representing query params
-   * @param prefix [OPTIONAL] name of the root param.
+   * @param nestedParameters nested objects representing query parameters
+   * @param prefix [OPTIONAL] name of the root parameter.
    */
-  public static convertNestedQueryParamsToPlainObject(nestedParams: {[key: string]: any}, prefix = ''): {[key: string]: any} {
+  public static convertNestedQueryParametersToPlainObject(nestedParameters: {[key: string]: any}, prefix = ''): {[key: string]: any} {
     const result: {[key: string]: any} = {};
-    for (const key in nestedParams) {
-      if (Object.prototype.hasOwnProperty.call(nestedParams, key)) {
-        let plainParamName = key;
+    for (const key in nestedParameters) {
+      if (Object.prototype.hasOwnProperty.call(nestedParameters, key)) {
+        let plainParameterName = key;
         if (prefix) {
-          plainParamName = prefix + '[' + plainParamName + ']';
+          plainParameterName = prefix + '[' + plainParameterName + ']';
         }
 
-        if (typeof nestedParams[key] === 'object') {
-          Object.assign(result, this.convertNestedQueryParamsToPlainObject(nestedParams[key], plainParamName));
+        if (typeof nestedParameters[key] === 'object') {
+          Object.assign(result, this.convertNestedQueryParametersToPlainObject(nestedParameters[key], plainParameterName));
         } else {
-          result[plainParamName] = nestedParams[key];
+          result[plainParameterName] = nestedParameters[key];
         }
       }
     }
@@ -82,7 +82,7 @@ export abstract class AbstractRequest<T> {
   }
 
   public async execute(): Promise<T> {
-    const url = this.getUrlWithParams();
+    const url = this.getUrlWithParameters();
     console.log('Requesting URL: ' + url.toString());
 
     let body;
@@ -92,10 +92,10 @@ export abstract class AbstractRequest<T> {
       }
 
       body = new URLSearchParams();
-      const plainFormParams = AbstractRequest.convertNestedQueryParamsToPlainObject(this.form);
-      for (const key in plainFormParams) {
-        if (Object.prototype.hasOwnProperty.call(plainFormParams, key)) {
-          body.append(key, plainFormParams[key]);
+      const plainFormParameters = AbstractRequest.convertNestedQueryParametersToPlainObject(this.form);
+      for (const key in plainFormParameters) {
+        if (Object.prototype.hasOwnProperty.call(plainFormParameters, key)) {
+          body.append(key, plainFormParameters[key]);
         }
       }
     }
@@ -130,13 +130,13 @@ export abstract class AbstractRequest<T> {
     return new URL(this.baseUrl);
   }
 
-  public getUrlWithParams(): URL {
+  public getUrlWithParameters(): URL {
     const url = this.getUrl();
 
-    const plainQueryParams = AbstractRequest.convertNestedQueryParamsToPlainObject(this.queryParams);
-    for (const key in plainQueryParams) {
-      if (Object.prototype.hasOwnProperty.call(plainQueryParams, key)) {
-        url.searchParams.append(key, plainQueryParams[key]);
+    const plainQueryParameters = AbstractRequest.convertNestedQueryParametersToPlainObject(this.queryParams);
+    for (const key in plainQueryParameters) {
+      if (Object.prototype.hasOwnProperty.call(plainQueryParameters, key)) {
+        url.searchParams.append(key, plainQueryParameters[key]);
       }
     }
 
@@ -169,5 +169,5 @@ export abstract class AbstractRequest<T> {
     this.abortController.abort();
   }
 
-  protected abstract async processResponse(response: Response): Promise<T>;
+  protected abstract async processResponse (response: Response): Promise<T>;
 }
