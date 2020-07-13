@@ -28,7 +28,7 @@ class A extends AbstractRequest<String>{
 
     getUrlWithParams(): URL {
         this.queryParams = nestedParams;
-        return super.getUrlWithParams();
+        return super.getUrlWithParameters();
     }
 
     protected async processResponse(response: Response): Promise<String> {
@@ -44,7 +44,7 @@ class B extends AbstractRequest<String>{
 
     getUrlWithParams(): URL {
         this.queryParams = nestedParams;
-        return super.getUrlWithParams();
+        return super.getUrlWithParameters();
     }
 
     protected async processResponse(response: Response): Promise<String> {
@@ -56,7 +56,7 @@ class B extends AbstractRequest<String>{
 
 describe('convertNestedParamsToPlain', () => {
     it('should return plain list of params', () => {
-        expect(AbstractRequest.convertNestedQueryParamsToPlainObject(nestedParams)).toEqual(plainParams);
+        expect(AbstractRequest.convertNestedQueryParametersToPlainObject(nestedParams)).toEqual(plainParams);
     });
 });
 
